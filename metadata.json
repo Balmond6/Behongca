@@ -1,0 +1,6 @@
+{
+  "name": "BEHONGCA — Herbal Mouthwash Research & Archive",
+  "description": "Interactive bilingual (ID/EN) scientific portal and PDF document archive for BEHONGCA: utilization of binahong leaves, eggshells, and mangoes using HTST pasteurization for dental health (SMP Negeri 1 Surakarta, I2ASPO 2026).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

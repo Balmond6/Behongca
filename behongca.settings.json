@@ -1,0 +1,124 @@
+{
+  "_panduan": "Edit file ini secara manual untuk mengatur file unduhan lokal (public/assets/download/...), latar belakang (/assets/background/...), folder aset proyek (public/assets/...), metadata makalah, kategori, dan daftar dokumen terkurasi di registeredDocuments dengan path lengkap (public/assets/document/namafile.pdf).",
+  "downloads": {
+    "detectorFile": "public/assets/download/behongca-smart-detection.apk",
+    "gameFile": "public/assets/download/super-behongca-bros.apk"
+  },
+  "backgrounds": {
+    "mobile": {
+      "day": "/assets/background/MobileDay.webp",
+      "night": "/assets/background/MobileNight.webp"
+    },
+    "tablet": {
+      "day": "/assets/background/TabletDay.webp",
+      "night": "/assets/background/TabletNight.webp"
+    },
+    "desktop": {
+      "day": "/assets/background/DesktopDay.webp",
+      "night": "/assets/background/DesktopNight.webp"
+    },
+    "overlay": {
+      "dayOpacity": 0,
+      "nightOpacity": 0.22
+    },
+    "blurPx": 2
+  },
+  "navbar": {
+    "topBlurPx": 2,
+    "scrolledBlurPx": 14
+  },
+  "paths": {
+    "assetsDir": "public/assets",
+    "backgroundDir": "public/assets/background",
+    "documentDir": "public/assets/document",
+    "downloadDir": "public/assets/download",
+    "photoDir": "public/assets/photo",
+    "documentsDbPath": "data/documents.json"
+  },
+  "paperMetadata": {
+    "kicker": "SMP Negeri 1 Surakarta · Applied Life Sciences · I2ASPO 2026",
+    "title": {
+      "id": "BEHONGCA: Inovasi Obat Kumur Herbal Berbasis Metode HTST",
+      "en": "BEHONGCA: HTST Herbal Mouthwash Innovation for Dental Health"
+    },
+    "subtitle": {
+      "id": "Obat kumur herbal 100% bebas alkohol dari daun binahong, cangkang telur, mangga, krokot, dan cornmint — dilengkapi perangkat HTST, detektor plak, dan game edukasi.",
+      "en": "100% alcohol-free herbal mouthwash crafted from binahong leaves, eggshells, mangoes, purslane, and cornmint — paired with an HTST smart device, plaque detector, and educational game."
+    },
+    "authors": [
+      "Arinda Rahmadina",
+      "Bagus Eka S.",
+      "Chelsea Putri P.",
+      "Clara Vanessa K.",
+      "Davina Queen E.N",
+      "Rangga Raditya"
+    ],
+    "institution": "SMP Negeri 1 Surakarta",
+    "year": 2026
+  },
+  "documentCategories": [
+    {
+      "id": "manuscript",
+      "emoji": "📄",
+      "label": {
+        "id": "Makalah Utama",
+        "en": "Manuscript"
+      }
+    },
+    {
+      "id": "lab_report",
+      "emoji": "🧪",
+      "label": {
+        "id": "Laporan Lab",
+        "en": "Lab Report"
+      }
+    },
+    {
+      "id": "protocol",
+      "emoji": "📋",
+      "label": {
+        "id": "Protokol",
+        "en": "Protocol"
+      }
+    },
+    {
+      "id": "presentation",
+      "emoji": "📊",
+      "label": {
+        "id": "Presentasi",
+        "en": "Presentation"
+      }
+    },
+    {
+      "id": "reference",
+      "emoji": "📚",
+      "label": {
+        "id": "Referensi",
+        "en": "Reference"
+      }
+    }
+  ],
+  "registeredDocuments": [
+    {
+      "id": "behongca-i2aspo-2026",
+      "enabled": true,
+      "filePath": "public/assets/document/BEHONGCA_I2ASPO_SMPN1SKA.pdf",
+      "title": "BEHONGCA: Utilization of Binahong Leaves, Eggshells, and Mangoes Using the HTST Method for Dental Health",
+      "category": "manuscript",
+      "author": "Arinda Rahmadina, Bagus Eka S., Chelsea Putri P., Clara Vanessa K., Davina Queen E.N, Rangga Raditya (SMP Negeri 1 Surakarta)",
+      "language": "en",
+      "uploadedAt": "2026-03-01T08:00:00.000Z",
+      "description": "Official I2ASPO 2026 Applied Life Sciences research proposal covering botanical formulation (F1–F3), HTST pasteurization & thermal shock, n=90 Surakarta school survey, and the BEHONGCA SMART system."
+    },
+    {
+      "id": "contoh-laporan-lab-1",
+      "enabled": false,
+      "filePath": "public/assets/document/contoh_hasil_uji_lab.pdf",
+      "title": "Contoh Laporan Uji Difusi Cakram S. mutans",
+      "category": "lab_report",
+      "author": "Balai Pengujian & Sertifikat Mutu Barang Surakarta",
+      "language": "bilingual",
+      "description": "Taruh file PDF/TXT di folder public/assets/document/, isi filePath lengkapnya (public/assets/document/namafile.pdf), lalu ubah enabled menjadi true agar tampil di Arsip Dokumen web."
+    }
+  ]
+}

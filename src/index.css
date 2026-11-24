@@ -1,0 +1,378 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  }
+
+  html {
+    font-family: var(--font-body);
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .dark body,
+  html.dark body {
+    letter-spacing: 0.008em;
+  }
+}
+
+/* Comfortable reader scale toggle for older & younger visitors */
+html.reader-large {
+  font-size: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .behongca-brand-link:hover .behongca-brand-logo,
+  .behongca-brand-link:active .behongca-brand-logo,
+  .behongca-brand-link:hover .behongca-brand-text,
+  .behongca-brand-link:active .behongca-brand-text,
+  .behongca-nav-link:hover,
+  .behongca-nav-link:active {
+    transform: none !important;
+    scale: none !important;
+    translate: none !important;
+  }
+}
+
+/* Crisp pixel-art backdrop rendering & frosted translucent cards */
+.pixel-art {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Soft frosted panel behind section headings & intros sitting directly over scenic backgrounds */
+.behongca-title-panel {
+  border-radius: 0.875rem;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background-color: rgba(255, 255, 255, 0.82);
+  padding: 1rem 1.25rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(19, 32, 27, 0.05);
+}
+
+.dark .behongca-title-panel {
+  border-color: rgba(35, 51, 45, 0.88);
+  background-color: rgba(14, 22, 20, 0.80);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Lightweight semi-transparent cards inside @layer components so Tailwind dark:bg-* utilities always win */
+@layer components {
+  html:not(.dark) .behongca-scenic-stage main .bg-white {
+    background-color: rgba(255, 255, 255, 0.92);
+  }
+
+  html:not(.dark) .behongca-scenic-stage main .bg-\[\#EEF4F0\] {
+    background-color: rgba(238, 244, 240, 0.92);
+  }
+
+  html:not(.dark) .behongca-scenic-stage main .bg-\[\#F7FAF8\] {
+    background-color: rgba(247, 250, 248, 0.92);
+  }
+
+  html.dark .behongca-scenic-stage main .dark\:bg-\[\#141E1B\] {
+    background-color: rgba(20, 30, 27, 0.90);
+  }
+
+  html.dark .behongca-scenic-stage main .dark\:bg-\[\#111916\] {
+    background-color: rgba(17, 25, 22, 0.90);
+  }
+
+  html.dark .behongca-scenic-stage main .dark\:bg-\[\#0F1714\] {
+    background-color: rgba(15, 23, 20, 0.90);
+  }
+
+  html.dark .behongca-scenic-stage main .dark\:bg-\[\#17241F\] {
+    background-color: rgba(23, 36, 31, 0.92);
+  }
+}
+
+/* Skip layout/paint cost for off-screen lower sections */
+.behongca-lazy-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 620px;
+}
+
+/* Initial Splash & PDF Loading Micro-Animations */
+@keyframes behongca-splash-bounce {
+  0%, 100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  40% {
+    transform: translateY(-7px) scale(1.07) rotate(-4deg);
+  }
+  70% {
+    transform: translateY(1px) scale(0.97) rotate(2deg);
+  }
+}
+
+@keyframes behongca-progress-fill {
+  0% {
+    transform: scaleX(0.08);
+  }
+  55% {
+    transform: scaleX(0.76);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes behongca-indeterminate-bar {
+  0% {
+    transform: translateX(-100%) scaleX(0.35);
+  }
+  50% {
+    transform: translateX(40%) scaleX(0.55);
+  }
+  100% {
+    transform: translateX(220%) scaleX(0.35);
+  }
+}
+
+.behongca-splash-logo {
+  animation: behongca-splash-bounce 1.05s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+  will-change: transform;
+}
+
+.behongca-progress-fill {
+  transform-origin: left center;
+  animation: behongca-progress-fill 680ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform;
+}
+
+.behongca-indeterminate-bar {
+  transform-origin: left center;
+  animation: behongca-indeterminate-bar 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform;
+}
+
+/* ==========================================================================
+   BEHONGCA Tactile Micro-Interactions (GPU-composited scale / translate / transform)
+   ========================================================================== */
+
+/* 1. Brand Logo + "BEHONGCA" Lockup: gentle tilt + spring bounce on hover & click */
+@keyframes behongca-logo-pop {
+  0% {
+    transform: rotate(4deg) scale(0.9);
+  }
+  45% {
+    transform: rotate(-10deg) scale(1.18);
+  }
+  75% {
+    transform: rotate(3deg) scale(1.03);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+.behongca-brand-link {
+  transition: opacity 160ms ease;
+}
+
+.behongca-brand-link .behongca-brand-logo {
+  transform-origin: center;
+  transition:
+    transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 200ms ease;
+  will-change: transform;
+}
+
+.behongca-brand-link .behongca-brand-text {
+  transform-origin: left center;
+  transition:
+    transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 160ms ease;
+}
+
+.behongca-brand-link:hover .behongca-brand-logo,
+.behongca-brand-link:focus-visible .behongca-brand-logo {
+  transform: rotate(-8deg) scale(1.13);
+  filter: drop-shadow(0 4px 10px rgba(13, 122, 95, 0.28));
+}
+
+.dark .behongca-brand-link:hover .behongca-brand-logo,
+.dark .behongca-brand-link:focus-visible .behongca-brand-logo {
+  filter: drop-shadow(0 4px 12px rgba(52, 211, 153, 0.3));
+}
+
+.behongca-brand-link:hover .behongca-brand-text,
+.behongca-brand-link:focus-visible .behongca-brand-text {
+  transform: translateX(2px) scale(1.03);
+}
+
+.behongca-brand-link:active .behongca-brand-logo {
+  transform: rotate(5deg) scale(0.91);
+  transition-duration: 85ms;
+}
+
+.behongca-brand-link:active .behongca-brand-text {
+  transform: translateX(0) scale(0.96);
+  transition-duration: 85ms;
+}
+
+.behongca-brand-logo.is-popping {
+  animation: behongca-logo-pop 420ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 2. Top Navbar Links: slight scale-up + centered emerald underline growing outward */
+.behongca-nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding-block: 0.25rem;
+  transform-origin: center;
+  transition:
+    scale 190ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    translate 190ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 160ms ease;
+}
+
+.behongca-nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 9999px;
+  background-color: #0D7A5F;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition:
+    transform 210ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 160ms ease;
+  pointer-events: none;
+}
+
+.dark .behongca-nav-link::after {
+  background-color: #34D399;
+}
+
+.behongca-nav-link:hover,
+.behongca-nav-link:focus-visible {
+  scale: 1.055;
+  translate: 0 -1px;
+}
+
+.behongca-nav-link:hover::after,
+.behongca-nav-link:focus-visible::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.behongca-nav-link:active {
+  scale: 0.95;
+  translate: 0 1px;
+  transition-duration: 85ms;
+}
+
+/* 3. Primary CTA Sheen Accent */
+.behongca-btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.behongca-btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.24) 50%,
+    transparent 80%
+  );
+  transform: translateX(-125%);
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.behongca-btn-primary:hover::after,
+.behongca-btn-primary:focus-visible::after {
+  transform: translateX(125%);
+}
+
+/* 4. Global Clickable Controls (Buttons, Tabs, Links & Clickable Cards) */
+:where(button, a[href], [role="button"], [role="tab"]):not(:disabled):not([aria-disabled="true"]):not(.behongca-brand-link):not(.behongca-nav-link):not(.behongca-no-lift) {
+  transition-property: scale, translate, color, background-color, border-color, box-shadow, opacity;
+  transition-duration: 180ms;
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+:where(button, a[href], [role="tab"]):not(:disabled):not([aria-disabled="true"]):not(.behongca-brand-link):not(.behongca-nav-link):not(.behongca-no-lift):hover {
+  scale: 1.024;
+  translate: 0 -1.5px;
+}
+
+:where([role="button"]):not(button):not(a):not(:disabled):not([aria-disabled="true"]):not(.behongca-brand-link):not(.behongca-nav-link):not(.behongca-no-lift):hover {
+  scale: 1.012;
+  translate: 0 -2px;
+}
+
+:where(button, a[href], [role="button"], [role="tab"]):not(:disabled):not([aria-disabled="true"]):not(.behongca-brand-link):not(.behongca-nav-link):not(.behongca-no-lift):active {
+  scale: 0.965;
+  translate: 0 1px;
+  transition-duration: 85ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 5. SVG Diagram Interactive Hotspots (HTST Device Schematic) */
+.behongca-svg-hotspot {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 160ms ease;
+}
+
+.behongca-svg-hotspot:hover {
+  transform: scale(1.18);
+}
+
+.behongca-svg-hotspot:active {
+  transform: scale(0.92);
+  transition-duration: 85ms;
+}
+
+/* Subtle custom scrollbar comfortable in both light and dark modes */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(13, 122, 95, 0.25);
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(52, 211, 153, 0.25);
+}
+

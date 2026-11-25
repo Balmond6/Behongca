@@ -2,7 +2,7 @@
   "_panduan": "Edit file ini secara manual untuk mengatur file unduhan lokal (public/assets/download/...), latar belakang (/assets/background/...), folder aset proyek (public/assets/...), metadata makalah, kategori, dan daftar dokumen terkurasi di registeredDocuments dengan path lengkap (public/assets/document/namafile.pdf).",
   "downloads": {
     "detectorFile": "public/assets/download/behongca-smart-detection.apk",
-    "gameFile": "public/assets/download/BRHONGCA_Bros.apk"
+    "gameFile": "public/assets/download/BEHONGCA_Bros.apk"
   },
   "backgrounds": {
     "mobile": {
